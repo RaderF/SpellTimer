@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         list_of_spells = Spell.createSpellList();
         dict_of_icons = Spell.createIconDict();
         populateSpinners();
+        set_initial_timer_displays();
         //displayLeftSpellIcon(); displayRightSpellIcon();
     }
 
@@ -70,10 +71,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void leftStartButton(){
-        leftStartButton.setOnClickListener(new View.OnClickListener() {
+leftStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reset_and_start_leftTimer(modifySpellCooldown(list_of_spells.get(list_of_spells.indexOf(leftSpellSelect.getSelectedItem())).getCooldown()));
+reset_and_start_leftTimer(modifySpellCooldown(
+list_of_spells.get(list_of_spells.indexOf(
+leftSpellSelect.getSelectedItem())).getCooldown()));
+
             }
         });
     }
@@ -85,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
                 reset_and_start_rightTimer(modifySpellCooldown(
                         list_of_spells.get(list_of_spells.indexOf(rightSpellSelect.getSelectedItem())).getCooldown()));}
         });
+    }
+
+    protected void set_initial_timer_displays(){
+        leftTimerView.setText("OFF CD");
+        rightTimerView.setText("OFF CD");
     }
 
     protected void reset_and_start_leftTimer(long millisInFuture){

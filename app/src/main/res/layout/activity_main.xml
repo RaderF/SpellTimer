@@ -113,8 +113,9 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/leftStartButton"
         app:srcCompat="@mipmap/spellbook"
-        tools:layout_editor_absoluteY="552dp" />
+        tools:layout_editor_absoluteY="552dp" android:contentDescription="TODO"/>
 
     <ImageView
         android:id="@+id/rightIconView"
@@ -123,6 +124,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rightStartButton"
         app:srcCompat="@mipmap/spellbook"
         tools:layout_editor_absoluteY="552dp" />
 
