@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         list_of_spells = Spell.createSpellList();
         dict_of_icons = Spell.createIconDict();
         populateSpinners();
-        displayLeftSpellIcon(); displayRightSpellIcon();
+        //displayLeftSpellIcon(); displayRightSpellIcon();
     }
 
     public void findIDs(){
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //TODO CRASHES ON NULL OBJECT REFERENCE SOMEWHERE
-    protected void displayLeftSpellIcon(){
+    /*protected void displayLeftSpellIcon(){
         String key_for_dict = list_of_spells.get(list_of_spells.indexOf(leftSpellSelect.getSelectedItem())).getSpellName();
         Integer drawableReference = dict_of_icons.get(key_for_dict);
         leftIconView.setImageResource(drawableReference);
@@ -147,5 +147,6 @@ public class MainActivity extends AppCompatActivity {
         Integer drawableReference = dict_of_icons.get(key_for_dict);
         rightIconView.setImageResource(drawableReference);
     }
+    */
 }
 
