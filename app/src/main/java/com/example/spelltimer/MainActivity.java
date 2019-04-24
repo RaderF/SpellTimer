@@ -1,5 +1,6 @@
 package com.example.spelltimer;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 leftTimerView.setText(String.valueOf(millisUntilFinished / 1000));
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFinish() {
                 leftTimerView.setText("OFF CD");
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 rightTimerView.setText(String.valueOf(millisUntilFinished / 1000));
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFinish() {
                 rightTimerView.setText("OFF CD");
@@ -71,12 +74,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void leftStartButton(){
-leftStartButton.setOnClickListener(new View.OnClickListener() {
+        leftStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-reset_and_start_leftTimer(modifySpellCooldown(
-list_of_spells.get(list_of_spells.indexOf(
-leftSpellSelect.getSelectedItem())).getCooldown()));
+                reset_and_start_leftTimer(
+                        modifySpellCooldown(
+                                ((Spell)leftSpellSelect.getSelectedItem()).getCooldown()));
 
             }
         });
@@ -104,6 +107,7 @@ leftSpellSelect.getSelectedItem())).getCooldown()));
                 leftTimerView.setText(String.valueOf(millisUntilFinished / 1000));
             }
 
+            @SuppressLint("SetTextI18n")
             public void onFinish() {
                 leftTimerView.setText("OFF CD");
             }
@@ -118,6 +122,7 @@ leftSpellSelect.getSelectedItem())).getCooldown()));
                 rightTimerView.setText(String.valueOf(millisUntilFinished / 1000));
             }
 
+            @SuppressLint("SetTextI18n")
             public void onFinish() {
                 rightTimerView.setText("OFF CD");
             }

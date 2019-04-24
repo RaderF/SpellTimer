@@ -1,5 +1,7 @@
 package com.example.spelltimer;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
@@ -9,12 +11,12 @@ public class Spell {
     private long Cooldown;
 
 
-    public Spell (String name, long cd){
+    private Spell(String name, long cd){
         SpellName = name;
         Cooldown = cd;
     }
 
-    public static ArrayList<Spell> createSpellList() {
+    static ArrayList<Spell> createSpellList() {
         ArrayList<Spell> list_of_spells = new ArrayList<>();
         list_of_spells.add(new Spell("Barrier", 180000));
         list_of_spells.add(new Spell("Cleanse", 210000));
@@ -27,7 +29,7 @@ public class Spell {
         return list_of_spells;
     }
 
-    public static Dictionary<String, Integer> createIconDict(){
+    static Dictionary<String, Integer> createIconDict(){
         Dictionary<String, Integer> dict_of_icons = new Dictionary<String, Integer>() {
             @Override
             public int size() {
@@ -75,15 +77,16 @@ public class Spell {
         return dict_of_icons;
     }
 
-    public long getCooldown() {
+    long getCooldown() {
         return Cooldown;
     }
 
-    public String getSpellName() {
+    private String getSpellName() {
         return SpellName;
     }
 
 
+    @NonNull
     @Override
     public String toString(){
         return this.getSpellName() + ": " + this.getCooldown()/1000;
