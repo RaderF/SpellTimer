@@ -1,7 +1,6 @@
 package com.example.spelltimer;
 
 import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findIDs();
-        leftStartButton(); rightStartButton();
+        setLeftStartButton(); setRightStartButton();
         list_of_spells = Spell.createSpellList();
         dict_of_icons = Spell.createIconDict();
         populateSpinners();
@@ -73,24 +72,21 @@ public class MainActivity extends AppCompatActivity {
         leftIconView = findViewById(R.id.leftIconView); rightIconView = findViewById(R.id.rightIconView);
     }
 
-    protected void leftStartButton(){
+    protected void setLeftStartButton(){
         leftStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reset_and_start_leftTimer(
-                        modifySpellCooldown(
-                                ((Spell)leftSpellSelect.getSelectedItem()).getCooldown()));
-
+                reset_and_start_leftTimer(modifySpellCooldown(((Spell)leftSpellSelect.getSelectedItem()).getCooldown()));
             }
         });
     }
 
-    protected void rightStartButton(){
+    protected void setRightStartButton(){
         rightStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reset_and_start_rightTimer(modifySpellCooldown(
-                        list_of_spells.get(list_of_spells.indexOf(rightSpellSelect.getSelectedItem())).getCooldown()));}
+                reset_and_start_rightTimer(modifySpellCooldown(((Spell)rightSpellSelect.getSelectedItem()).getCooldown()));
+            }
         });
     }
 
