@@ -1,15 +1,13 @@
 package com.example.spelltimer;
 
 import android.support.annotation.NonNull;
-
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Spell {
     private String SpellName;
     private long Cooldown;
-
 
     private Spell(String name, long cd){
         SpellName = name;
@@ -29,43 +27,8 @@ public class Spell {
         return list_of_spells;
     }
 
-    static Dictionary<String, Integer> createIconDict(){
-        Dictionary<String, Integer> dict_of_icons = new Dictionary<String, Integer>() {
-            @Override
-            public int size() {
-                return 8;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public Enumeration<String> keys() {
-                return null;
-            }
-
-            @Override
-            public Enumeration<Integer> elements() {
-                return null;
-            }
-
-            @Override
-            public Integer get(Object key) {
-                return null;
-            }
-
-            @Override
-            public Integer put(String key, Integer value) {
-                return null;
-            }
-
-            @Override
-            public Integer remove(Object key) {
-                return null;
-            }
-        };
+    static Map<String, Integer> createIconDict(){
+        Map<String, Integer> dict_of_icons = new HashMap<>();
         dict_of_icons.put("Barrier", R.drawable.barrier_icon);
         dict_of_icons.put("Cleanse", R.drawable.cleanse_icon);
         dict_of_icons.put("Exhaust", R.drawable.exhaust_icon);
@@ -81,7 +44,7 @@ public class Spell {
         return Cooldown;
     }
 
-    private String getSpellName() {
+    String getSpellName() {
         return SpellName;
     }
 

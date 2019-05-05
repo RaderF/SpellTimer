@@ -4,20 +4,23 @@ import android.annotation.SuppressLint;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.Dictionary;
+import java.util.Map;
 
+//TODO make changing the selected object in spinners change imageViews too
+//TODO make checkboxes modify a boolean variable in HasModifiers
 public class MainActivity extends AppCompatActivity {
     protected ArrayList<Spell> list_of_spells;
-    protected Dictionary<String,Integer> dict_of_icons;
+    protected Map<String,Integer> dict_of_icons;
     protected static CheckBox hasBoots;
     protected static CheckBox hasInsight;
     protected Spinner leftSpellSelect; protected Spinner rightSpellSelect;
@@ -31,12 +34,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findIDs();
-        setLeftStartButton(); setRightStartButton();
         list_of_spells = Spell.createSpellList();
         dict_of_icons = Spell.createIconDict();
         populateSpinners();
+        setLeftStartButton(); setRightStartButton();
+        leftSpellSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updateIcons();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        rightSpellSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updateIcons();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         set_initial_timer_displays();
-        //displayLeftSpellIcon(); displayRightSpellIcon();
+        updateIcons();
     }
 
     public void findIDs(){
@@ -130,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
                 this, android.R.layout.simple_spinner_dropdown_item, list_of_spells);
         leftSpellSelect.setAdapter(spellArrayAdapter); rightSpellSelect.setAdapter(spellArrayAdapter);
         leftSpellSelect.setSelection(0); rightSpellSelect.setSelection(0);
-
     }
 
     protected static long modifySpellCooldown(long spell_cd){
@@ -144,19 +168,24 @@ public class MainActivity extends AppCompatActivity {
         return spell_cd;
     }
 
-    //TODO CRASHES ON NULL OBJECT REFERENCE SOMEWHERE
-    /*protected void displayLeftSpellIcon(){
-        String key_for_dict = list_of_spells.get(list_of_spells.indexOf(leftSpellSelect.getSelectedItem())).getSpellName();
+    protected void updateLeftSpellIcon(){
+        String key_for_dict = ((Spell)leftSpellSelect.getSelectedItem()).getSpellName();
         Integer drawableReference = dict_of_icons.get(key_for_dict);
         leftIconView.setImageResource(drawableReference);
     }
 
-    //TODO CRASHES ON NULL OBJECT REFERENCE SOMEWHERE
-    protected void displayRightSpellIcon(){
-        String key_for_dict = list_of_spells.get(list_of_spells.indexOf(rightSpellSelect.getSelectedItem())).getSpellName();
+    protected void updateRightSpellIcon(){
+        String key_for_dict = ((Spell)rightSpellSelect.getSelectedItem()).getSpellName();
         Integer drawableReference = dict_of_icons.get(key_for_dict);
         rightIconView.setImageResource(drawableReference);
     }
-    */
+
+    protected void updateIcons(){
+        updateLeftSpellIcon();
+        updateRightSpellIcon();
+    }
+
+
+
 }
 

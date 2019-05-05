@@ -1,15 +1,9 @@
 package com.example.spelltimer;
 
-import android.widget.CheckBox;
-
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
 //TODO remove null pointer exceptions from these tests
-public class CooldownModifierUnitTest extends MainActivity{
-    CheckBox hasBoots;
-    CheckBox hasInsight;
+public class CooldownModifierUnitTest {
 
     @Test
     public void do_both_cdr_boxes_work() {
